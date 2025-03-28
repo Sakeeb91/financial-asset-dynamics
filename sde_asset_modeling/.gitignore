@@ -1,0 +1,37 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Data files
+*.csv
+*.xlsx
+*.xls
+*.h5
+
+# Exceptions (if you want to include specific data files)
+!example_data.csv
+
+# OS specific
+.DS_Store
+Thumbs.db 
