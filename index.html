@@ -110,6 +110,15 @@
             color: var(--primary-color);
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -451,14 +460,37 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
 
             .demo-container {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
             }
 
             .code-examples {
@@ -469,8 +501,105 @@
                 display: none;
             }
 
+            .mobile-menu-btn {
+                display: block;
+            }
+
             .container {
                 padding: 0 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .demo-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .features-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-card,
+            .step-card {
+                padding: 2rem;
+            }
+
+            /* Fix grid layouts on mobile */
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))"],
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"],
+            div[style*="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+                line-height: 1.1;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 0.75rem;
+            }
+
+            .demo-stats {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+            }
+
+            .feature-title {
+                font-size: 1.3rem;
             }
         }
 
@@ -498,12 +627,15 @@
             <a href="#" class="nav-logo">💰 Financial Asset Dynamics</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#business-value">Business Value</a></li>
+                <li><a href="#business-value">Overview</a></li>
                 <li><a href="#demo">Demo</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#code">Code</a></li>
                 <li><a href="https://github.com/Sakeeb91/financial-asset-dynamics" target="_blank">GitHub</a></li>
             </ul>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
