@@ -13,37 +13,7 @@
     <meta property="og:title" content="Financial Asset Dynamics - Advanced Quantitative Finance Library">
     <meta property="og:description" content="Institutional-grade quantitative finance library with portfolio optimization, risk management, and options pricing.">
 
-    <!-- Fonts and Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    
     <style>
-        :root {
-            --primary-color: #1e40af;
-            --secondary-color: #3b82f6;
-            --accent-color: #059669;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --text-light: #9ca3af;
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-dark: #0f172a;
-            --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --gradient-finance: linear-gradient(135deg, #1e40af 0%, #059669 100%);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -51,1074 +21,446 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Courier New', monospace;
             line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            overflow-x: hidden;
+            color: #000;
+            background-color: #fff;
+            font-size: 14px;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            position: relative;
-            overflow: hidden;
-            padding-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e2e8f0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-finance);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 400;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.7;
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--primary-color);
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--bg-secondary);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+        /* Header */
+        .header {
+            padding: 80px 0;
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
+            border-bottom: 1px solid #000;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .feature-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
+        .subtitle {
+            font-size: 16px;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
+        .badges {
+            margin-bottom: 30px;
         }
 
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-finance);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .feature-list {
-            list-style: none;
-            text-align: left;
-        }
-
-        .feature-list li {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .feature-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success-color);
+        .badge {
+            margin: 0 10px 10px 0;
             font-weight: bold;
         }
 
-        /* Demo Section */
-        .demo {
-            padding: 6rem 0;
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            color: #000;
+            text-decoration: none;
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
-        .demo-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .btn:hover {
+            background: #000;
+            color: #fff;
         }
 
-        .demo-content h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid #000;
         }
 
-        .demo-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-item {
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
             text-align: center;
-            padding: 1.5rem;
-            background: var(--bg-secondary);
-            border-radius: 0.5rem;
-            border: 1px solid var(--border-color);
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        /* Features */
+        .feature {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #ccc;
         }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
+        .feature:last-child {
+            border-bottom: none;
         }
 
-        .chart-container {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border-color);
-            min-height: 400px;
+        .feature h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        /* Code Section */
-        .code-section {
-            padding: 6rem 0;
-            background: var(--bg-secondary);
+        .feature p {
+            margin-bottom: 15px;
         }
 
-        .code-examples {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        /* Mathematical Models */
+        .model-section {
+            margin: 40px 0;
         }
 
-        .code-card {
-            background: var(--bg-dark);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
+        .model-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
-        .code-header {
-            background: #1e293b;
-            padding: 1rem 1.5rem;
-            color: white;
-            font-weight: 600;
-            border-bottom: 1px solid #334155;
-        }
-
-        .code-content {
-            padding: 1.5rem;
-            color: #e2e8f0;
+        .equation {
             font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            overflow-x: auto;
+            background: #f5f5f5;
+            padding: 15px;
+            border-left: 3px solid #000;
+            margin: 20px 0;
+            white-space: pre-wrap;
         }
 
-        .keyword { color: #fbbf24; }
-        .string { color: #34d399; }
-        .comment { color: #6b7280; }
-        .function { color: #60a5fa; }
-
-        /* Getting Started */
-        .getting-started {
-            padding: 6rem 0;
+        /* Technical Grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .steps-grid {
+        .tech-item {
+            border-left: 3px solid #000;
+            padding-left: 15px;
+        }
+
+        .tech-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        /* Models Grid */
+        .models-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 40px;
+            margin-top: 40px;
         }
 
-        .step-card {
-            text-align: center;
-            padding: 2rem;
+        .model-card {
+            border: 2px solid #000;
+            padding: 20px;
         }
 
-        .step-number {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-finance);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 1.5rem;
+        .model-card h3 {
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         /* Footer */
         .footer {
-            background: var(--bg-dark);
-            color: white;
-            padding: 3rem 0;
+            padding: 80px 0;
             text-align: center;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: white;
+            border-top: 1px solid #000;
         }
 
         .footer-links {
-            list-style: none;
+            margin-bottom: 20px;
         }
 
-        .footer-links li {
-            margin-bottom: 0.5rem;
+        .footer-link {
+            color: #000;
+            text-decoration: underline;
+            margin: 0 20px;
         }
 
-        .footer-links a {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 3rem;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 20px;
             }
             
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem;
-                line-height: 1.2;
-                margin-bottom: 1rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .demo-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .code-examples {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .container {
-                padding: 0 1rem;
+                padding: 0 15px;
             }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-            }
-
+            
             .btn {
-                padding: 0.6rem 1.5rem;
-                font-size: 0.9rem;
+                display: block;
+                width: 200px;
+                margin: 10px auto;
+                text-align: center;
             }
-
-            .demo-stats {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .features-grid,
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-card,
-            .step-card {
-                padding: 2rem;
-            }
-
-            /* Fix grid layouts on mobile */
-            div[style*="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr))"],
-            div[style*="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))"],
-            div[style*="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))"] {
-                grid-template-columns: 1fr !important;
-            }
-
-            div[style*="grid-template-columns: 1fr 1fr"] {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 1.8rem;
-                line-height: 1.1;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-description {
-                font-size: 0.95rem;
-            }
-
-            .nav-logo {
-                font-size: 1.1rem;
-            }
-
-            .container {
-                padding: 0 0.75rem;
-            }
-
-            .demo-stats {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-
-            .stat-item {
-                padding: 1rem;
-            }
-
-            .stat-number {
-                font-size: 1.3rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
-            }
-
-            .feature-icon {
-                font-size: 2.5rem;
-            }
-
-            .feature-title {
-                font-size: 1.3rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">💰 Financial Asset Dynamics</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#business-value">Overview</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#code">Code</a></li>
-                <li><a href="https://github.com/Sakeeb91/financial-asset-dynamics" target="_blank">GitHub</a></li>
-            </ul>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Header -->
+    <header class="header">
         <div class="container">
-            <div class="hero-content fade-in-up">
-                <h1 class="hero-title">Financial Asset Dynamics</h1>
-                <p class="hero-subtitle">Advanced Quantitative Finance Library for Institutional-Grade Analytics</p>
-                <p class="hero-description">
-                    A comprehensive Python library implementing advanced stochastic differential equations, 
-                    portfolio optimization algorithms, and risk management frameworks used in institutional finance. 
-                    Features real-time market data integration, Monte Carlo simulations, and interactive 
-                    analytics dashboards for quantitative analysis.
+            <h1>FINANCIAL ASSET DYNAMICS</h1>
+            <p class="subtitle">Advanced Quantitative Finance Library for Institutional-Grade Analytics</p>
+            
+            <div class="badges">
+                <span class="badge">INSTITUTIONAL QUALITY</span><br>
+                <span class="badge">PORTFOLIO OPTIMIZATION</span><br>
+                <span class="badge">OPTIONS PRICING</span><br>
+                <span class="badge">RISK MANAGEMENT</span>
+            </div>
+
+            <div>
+                <a href="https://github.com/Sakeeb91/financial-asset-dynamics" class="btn" target="_blank">VIEW CODE</a>
+                <a href="#features" class="btn">EXPLORE FEATURES</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mathematical Models -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">STOCHASTIC DIFFERENTIAL EQUATION MODELS</h2>
+            
+            <div class="model-section">
+                <div class="model-title">GEOMETRIC BROWNIAN MOTION (GBM)</div>
+                <div class="equation">dS(t) = μS(t)dt + σS(t)dW(t)
+
+Where:
+- S(t) = asset price at time t
+- μ = drift coefficient (expected return)
+- σ = volatility parameter
+- dW(t) = Wiener process increment</div>
+            </div>
+
+            <div class="model-section">
+                <div class="model-title">HESTON STOCHASTIC VOLATILITY MODEL</div>
+                <div class="equation">dS(t) = rS(t)dt + √V(t)S(t)dW₁(t)
+dV(t) = κ(θ - V(t))dt + σᵥ√V(t)dW₂(t)
+
+Where:
+- V(t) = variance process
+- κ = mean reversion speed
+- θ = long-term variance
+- σᵥ = volatility of volatility</div>
+            </div>
+
+            <div class="model-section">
+                <div class="model-title">ORNSTEIN-UHLENBECK PROCESS</div>
+                <div class="equation">dX(t) = θ(μ - X(t))dt + σdW(t)
+
+Mean-reverting process for:
+- Interest rates
+- Commodity prices
+- Volatility modeling</div>
+            </div>
+
+            <div class="model-section">
+                <div class="model-title">JUMP-DIFFUSION MODEL</div>
+                <div class="equation">dS(t) = μS(t)dt + σS(t)dW(t) + S(t⁻)dJ(t)
+
+Where:
+- dJ(t) = jump process
+- λ = jump intensity
+- Captures sudden price movements</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Implementation -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">MODEL IMPLEMENTATIONS</h2>
+            
+            <div class="models-grid">
+                <div class="model-card">
+                    <h3>GBM SIMULATION</h3>
+                    <p>
+                        Classical Black-Scholes framework with geometric Brownian motion. 
+                        Euler-Maruyama and Milstein schemes for numerical integration.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Equity price modeling</p>
+                    <p>- Options pricing</p>
+                    <p>- Risk neutral simulation</p>
+                </div>
+
+                <div class="model-card">
+                    <h3>HESTON MODEL</h3>
+                    <p>
+                        Stochastic volatility with mean reversion and correlation structure. 
+                        Full truncation scheme for variance process positivity.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Volatility smile modeling</p>
+                    <p>- Exotic option pricing</p>
+                    <p>- Risk management</p>
+                </div>
+
+                <div class="model-card">
+                    <h3>ORNSTEIN-UHLENBECK</h3>
+                    <p>
+                        Mean-reverting process with analytical solutions and parameter 
+                        estimation via maximum likelihood and method of moments.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Interest rate modeling</p>
+                    <p>- Pairs trading</p>
+                    <p>- Commodity prices</p>
+                </div>
+
+                <div class="model-card">
+                    <h3>JUMP-DIFFUSION</h3>
+                    <p>
+                        Merton jump-diffusion with Poisson jump arrivals and 
+                        log-normal jump sizes for crisis modeling.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Crisis risk modeling</p>
+                    <p>- Option pricing</p>
+                    <p>- Tail risk analysis</p>
+                </div>
+
+                <div class="model-card">
+                    <h3>SABR MODEL</h3>
+                    <p>
+                        Stochastic Alpha, Beta, Rho model for interest rate 
+                        derivatives with volatility smile dynamics.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Swaption pricing</p>
+                    <p>- Interest rate options</p>
+                    <p>- Volatility surface</p>
+                </div>
+
+                <div class="model-card">
+                    <h3>CORRELATED ASSETS</h3>
+                    <p>
+                        Multi-dimensional SDE systems with Cholesky decomposition 
+                        for correlation structure preservation.
+                    </p>
+                    <p><strong>Use Cases:</strong></p>
+                    <p>- Portfolio simulation</p>
+                    <p>- Basket options</p>
+                    <p>- Risk aggregation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">QUANTITATIVE FINANCE CAPABILITIES</h2>
+            
+            <div class="feature">
+                <h3>PORTFOLIO OPTIMIZATION</h3>
+                <p>
+                    Advanced portfolio construction using Modern Portfolio Theory, Black-Litterman, 
+                    and risk parity approaches. Mean-variance optimization with transaction costs, 
+                    constraints, and robust estimation techniques for institutional applications.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#demo" class="btn btn-primary">
-                        <i class="fas fa-chart-line"></i> View Demo
-                    </a>
-                    <a href="https://github.com/Sakeeb91/financial-asset-dynamics" class="btn btn-secondary" target="_blank">
-                        <i class="fab fa-github"></i> Source Code
-                    </a>
-                    <a href="#getting-started" class="btn btn-secondary">
-                        <i class="fas fa-rocket"></i> Get Started
-                    </a>
-                </div>
-                
-                <!-- Quick Stats -->
-                <div class="demo-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">6+</div>
-                        <div class="stat-label">SDE Models</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Optimization Strategies</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">Risk Metrics</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">Real-time</div>
-                        <div class="stat-label">Market Data</div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Implementation Overview -->
-    <section id="business-value" style="padding: 6rem 0; background: var(--bg-secondary);">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Implementation Overview</h2>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <div style="margin-bottom: 2rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
-                        <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Portfolio Management</h3>
-                    </div>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Implements Markowitz mean-variance optimization, Black-Litterman models, and risk parity strategies. 
-                        Handles multi-asset portfolios with real-time rebalancing and constraint management.
-                    </p>
-                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.5rem;">• Efficient frontier generation</li>
-                        <li style="margin-bottom: 0.5rem;">• Maximum Sharpe ratio optimization</li>
-                        <li style="margin-bottom: 0.5rem;">• CVaR-based risk budgeting</li>
-                        <li>• Factor-based attribution analysis</li>
-                    </ul>
-                </div>
-
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <div style="margin-bottom: 2rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚠️</div>
-                        <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Risk Analytics</h3>
-                    </div>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Comprehensive risk measurement framework including VaR, CVaR, and stress testing capabilities. 
-                        Supports both historical and Monte Carlo simulation approaches.
-                    </p>
-                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.5rem;">• Multi-horizon VaR calculation</li>
-                        <li style="margin-bottom: 0.5rem;">• Scenario-based stress testing</li>
-                        <li style="margin-bottom: 0.5rem;">• GARCH volatility modeling</li>
-                        <li>• Tail risk analysis and reporting</li>
-                    </ul>
-                </div>
-
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <div style="margin-bottom: 2rem;">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📈</div>
-                        <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Derivatives Pricing</h3>
-                    </div>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Full Black-Scholes implementation with complete Greeks calculations, implied volatility extraction, 
-                        and American option approximations using binomial trees.
-                    </p>
-                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.5rem;">• Delta, Gamma, Theta, Vega, Rho</li>
-                        <li style="margin-bottom: 0.5rem;">• Volatility surface construction</li>
-                        <li style="margin-bottom: 0.5rem;">• Option chain generation</li>
-                        <li>• Risk sensitivity analysis</li>
-                    </ul>
-                </div>
-
+            <div class="feature">
+                <h3>RISK MANAGEMENT SUITE</h3>
+                <p>
+                    Comprehensive risk metrics including Value-at-Risk (VaR), Conditional VaR, 
+                    Maximum Drawdown, and stress testing. Monte Carlo simulation with variance 
+                    reduction techniques for accurate tail risk estimation.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Market Data & Analytics -->
-    <section style="padding: 6rem 0;">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Market Intelligence & Analytics</h2>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
-                <div>
-                    <h3 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; color: var(--text-primary);">Real-Time Market Data Integration</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">
-                        Connects to Yahoo Finance API for live market data, supporting major indices, sector ETFs, 
-                        and individual securities. Handles data cleaning, transformation, and storage for historical analysis.
-                    </p>
-                    
-                    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem;">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Data Sources:</h4>
-                        <ul style="list-style: none; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.5rem;">• S&P 500 constituents and major indices</li>
-                            <li style="margin-bottom: 0.5rem;">• Sector ETFs for tactical allocation</li>
-                            <li style="margin-bottom: 0.5rem;">• International and emerging market data</li>
-                            <li>• Fixed income and commodity instruments</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div style="background: var(--bg-secondary); padding: 2.5rem; border-radius: 1rem;">
-                    <h4 style="color: var(--primary-color); font-size: 1.3rem; margin-bottom: 1.5rem; text-align: center;">🔄 Market Regime Detection</h4>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Advanced statistical techniques identify market regimes using Hidden Markov Models, 
-                        Gaussian Mixture Models, and structural break detection. Enables tactical asset allocation 
-                        and risk management based on market conditions.
-                    </p>
-                    <ul style="list-style: none; color: var(--text-secondary); font-size: 0.9rem;">
-                        <li style="margin-bottom: 0.5rem;">• Volatility clustering analysis</li>
-                        <li style="margin-bottom: 0.5rem;">• CUSUM structural break detection</li>
-                        <li style="margin-bottom: 0.5rem;">• Correlation regime identification</li>
-                        <li>• Market stress indicator construction</li>
-                    </ul>
-                </div>
+            <div class="feature">
+                <h3>DERIVATIVES PRICING</h3>
+                <p>
+                    Black-Scholes framework with extensions for American options, barrier options, 
+                    and exotic derivatives. Finite difference methods, binomial trees, and 
+                    Monte Carlo pricing with Greeks calculation for risk management.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- Stochastic Models Section -->
-    <section style="padding: 6rem 0; background: var(--bg-secondary);">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Stochastic Differential Equations</h2>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">📈 Geometric Brownian Motion</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Classical model for stock price dynamics with constant drift and volatility parameters. 
-                        Supports exact analytical solutions and efficient Monte Carlo simulation.
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.85rem;">
-                        dS = μS dt + σS dW
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">🌊 Heston Stochastic Volatility</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Two-factor model capturing volatility clustering and correlation between price and volatility. 
-                        Implements Euler-Maruyama scheme with variance floor for numerical stability.
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.85rem;">
-                        dS = μS dt + √v S dW₁<br>
-                        dv = κ(θ-v) dt + ξ√v dW₂
-                    </div>
-                </div>
-
-                <div style="background: white; border-radius: 1rem; padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--border-color);">
-                    <h3 style="font-size: 1.4rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">⚡ Jump-Diffusion Models</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-                        Extensions of GBM incorporating discontinuous price movements via Poisson processes. 
-                        Models market crashes and earnings announcements with configurable jump intensities.
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; font-size: 0.85rem;">
-                        dS = μS dt + σS dW + S dJ
-                    </div>
-                </div>
-
+            <div class="feature">
+                <h3>MARKET REGIME DETECTION</h3>
+                <p>
+                    Hidden Markov Models and regime-switching frameworks for identifying 
+                    bull/bear markets, volatility regimes, and structural breaks. 
+                    Automatic model selection and regime probability estimation.
+                </p>
+            </div>
+            
+            <div class="feature">
+                <h3>REAL-TIME DATA INTEGRATION</h3>
+                <p>
+                    Professional market data feeds with real-time processing, data cleaning, 
+                    and transformation pipelines. Support for multiple data vendors and 
+                    asset classes with institutional-grade data quality controls.
+                </p>
+            </div>
+            
+            <div class="feature">
+                <h3>BACKTESTING FRAMEWORK</h3>
+                <p>
+                    Robust backtesting engine with realistic transaction costs, market impact, 
+                    and slippage modeling. Performance attribution, risk decomposition, and 
+                    statistical significance testing for strategy validation.
+                </p>
             </div>
         </div>
     </section>
 
-
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- Technical Specifications -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title fade-in-up">Technical Implementation</h2>
-            <div class="features-grid fade-in-up">
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3 class="feature-title">Stochastic Models</h3>
-                    <ul class="feature-list">
-                        <li>Geometric Brownian Motion (GBM)</li>
-                        <li>Heston Stochastic Volatility</li>
-                        <li>SABR Volatility Smile</li>
-                        <li>Jump-Diffusion Models</li>
-                        <li>Ornstein-Uhlenbeck Process</li>
-                        <li>Correlated Asset Dynamics</li>
-                    </ul>
+            <h2 class="section-title">TECHNICAL SPECIFICATIONS</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-title">SDE MODELS</div>
+                    <div>6+ Stochastic Processes</div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Portfolio Optimization</h3>
-                    <ul class="feature-list">
-                        <li>Markowitz Mean-Variance</li>
-                        <li>Black-Litterman Model</li>
-                        <li>Risk Parity Portfolios</li>
-                        <li>Maximum Sharpe Ratio</li>
-                        <li>CVaR Optimization</li>
-                        <li>Efficient Frontier</li>
-                    </ul>
+                <div class="tech-item">
+                    <div class="tech-title">OPTIMIZATION METHODS</div>
+                    <div>5 Portfolio Strategies</div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">⚠️</div>
-                    <h3 class="feature-title">Risk Management</h3>
-                    <ul class="feature-list">
-                        <li>Value at Risk (VaR)</li>
-                        <li>Conditional VaR (CVaR)</li>
-                        <li>Maximum Drawdown</li>
-                        <li>GARCH Volatility</li>
-                        <li>Stress Testing</li>
-                        <li>Tail Risk Metrics</li>
-                    </ul>
+                <div class="tech-item">
+                    <div class="tech-title">RISK METRICS</div>
+                    <div>20+ Risk Measures</div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3 class="feature-title">Options Analytics</h3>
-                    <ul class="feature-list">
-                        <li>Black-Scholes Pricing</li>
-                        <li>Complete Greeks</li>
-                        <li>Implied Volatility</li>
-                        <li>American Options</li>
-                        <li>Volatility Surfaces</li>
-                        <li>Option Chains</li>
-                    </ul>
+                <div class="tech-item">
+                    <div class="tech-title">MARKET DATA</div>
+                    <div>Real-time Integration</div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3 class="feature-title">Market Intelligence</h3>
-                    <ul class="feature-list">
-                        <li>Regime Detection (HMM)</li>
-                        <li>Structural Breaks</li>
-                        <li>Correlation Dynamics</li>
-                        <li>Market Stress Indicators</li>
-                        <li>Volatility Clustering</li>
-                        <li>Gaussian Mixture Models</li>
-                    </ul>
+                <div class="tech-item">
+                    <div class="tech-title">PRICING MODELS</div>
+                    <div>Black-Scholes + Extensions</div>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3 class="feature-title">Data Integration</h3>
-                    <ul class="feature-list">
-                        <li>Real-time Market Data</li>
-                        <li>Yahoo Finance API</li>
-                        <li>S&P 500 Constituents</li>
-                        <li>Sector ETF Analysis</li>
-                        <li>Interactive Dashboards</li>
-                        <li>Professional Reports</li>
-                    </ul>
+                <div class="tech-item">
+                    <div class="tech-title">NUMERICAL METHODS</div>
+                    <div>Monte Carlo + FDM</div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Demo Section -->
-    <section class="demo" id="demo">
-        <div class="container">
-            <div class="demo-container fade-in-up">
-                <div class="demo-content">
-                    <h3>Portfolio Optimization Demo</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-                        Interactive demonstration of the efficient frontier calculation using historical market data. 
-                        The chart displays optimal portfolios for different risk-return profiles, with specific 
-                        optimization strategies highlighted.
-                    </p>
-                    
-                    <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem;">
-                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Optimization Strategies:</h4>
-                        <ul style="list-style: none; color: var(--text-secondary);">
-                            <li style="margin-bottom: 0.5rem;">• <strong>Maximum Sharpe:</strong> Optimal risk-adjusted returns</li>
-                            <li style="margin-bottom: 0.5rem;">• <strong>Minimum Variance:</strong> Lowest portfolio volatility</li>
-                            <li style="margin-bottom: 0.5rem;">• <strong>Risk Parity:</strong> Equal risk contribution from each asset</li>
-                            <li>• <strong>Target Return:</strong> Minimum risk for specified return level</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="demo-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">1.85</div>
-                            <div class="stat-label">Max Sharpe Ratio</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">12.4%</div>
-                            <div class="stat-label">Optimal Return</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">8.7%</div>
-                            <div class="stat-label">Min Variance</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">0.15</div>
-                            <div class="stat-label">Correlation</div>
-                        </div>
-                    </div>
-
-                    <a href="#code" class="btn btn-primary">
-                        <i class="fas fa-code"></i> View Implementation
-                    </a>
+                <div class="tech-item">
+                    <div class="tech-title">FRAMEWORK</div>
+                    <div>Python + NumPy + SciPy</div>
                 </div>
-                
-                <div class="chart-container">
-                    <div id="efficient-frontier-chart"></div>
+                <div class="tech-item">
+                    <div class="tech-title">VISUALIZATION</div>
+                    <div>Interactive Dashboards</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Code Examples Section -->
-    <section class="code-section" id="code">
-        <div class="container">
-            <h2 class="section-title fade-in-up" style="color: white;">Code Examples</h2>
-            <div class="code-examples fade-in-up">
-                
-                <div class="code-card">
-                    <div class="code-header">
-                        <i class="fas fa-chart-pie"></i> Portfolio Optimization
-                    </div>
-                    <div class="code-content">
-<span class="keyword">from</span> sde_asset_modeling.portfolio.optimizer <span class="keyword">import</span> PortfolioOptimizer
-
-<span class="comment"># Initialize optimizer with returns data</span>
-optimizer = PortfolioOptimizer(returns_data)
-
-<span class="comment"># Maximum Sharpe ratio portfolio</span>
-max_sharpe = optimizer.<span class="function">maximum_sharpe_optimization</span>()
-<span class="keyword">print</span>(<span class="string">f"Optimal weights: {max_sharpe['weights']}"</span>)
-<span class="keyword">print</span>(<span class="string">f"Sharpe ratio: {max_sharpe['sharpe_ratio']:.3f}"</span>)
-
-<span class="comment"># Generate efficient frontier</span>
-frontier = optimizer.<span class="function">efficient_frontier</span>(n_points=100)
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="code-header">
-                        <i class="fas fa-exclamation-triangle"></i> Risk Analysis
-                    </div>
-                    <div class="code-content">
-<span class="keyword">from</span> sde_asset_modeling.portfolio.risk_metrics <span class="keyword">import</span> RiskMetrics
-
-<span class="comment"># Initialize risk calculator</span>
-risk_calc = RiskMetrics(returns_data)
-
-<span class="comment"># Value at Risk calculations</span>
-var_95 = risk_calc.<span class="function">value_at_risk</span>(confidence_level=0.05)
-cvar_95 = risk_calc.<span class="function">conditional_value_at_risk</span>(0.05)
-
-<span class="comment"># Comprehensive risk report</span>
-risk_report = risk_calc.<span class="function">generate_risk_report</span>()
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="code-header">
-                        <i class="fas fa-chart-line"></i> Options Pricing
-                    </div>
-                    <div class="code-content">
-<span class="keyword">from</span> sde_asset_modeling.options.black_scholes <span class="keyword">import</span> BlackScholesModel
-
-<span class="comment"># Create Black-Scholes model</span>
-bs = BlackScholesModel(
-    spot_price=100, strike_price=105,
-    time_to_expiry=0.25, risk_free_rate=0.05,
-    volatility=0.2
-)
-
-<span class="comment"># Calculate prices and Greeks</span>
-call_price = bs.<span class="function">call_price</span>()
-greeks = bs.<span class="function">all_greeks</span>(<span class="string">'call'</span>)
-<span class="keyword">print</span>(<span class="string">f"Delta: {greeks['delta']:.3f}"</span>)
-                    </div>
-                </div>
-
-                <div class="code-card">
-                    <div class="code-header">
-                        <i class="fas fa-sync-alt"></i> Market Regimes
-                    </div>
-                    <div class="code-content">
-<span class="keyword">from</span> sde_asset_modeling.analytics.regime_detection <span class="keyword">import</span> RegimeDetector
-
-<span class="comment"># Initialize regime detector</span>
-detector = RegimeDetector(returns_data.iloc[:, 0])
-
-<span class="comment"># Detect volatility regimes</span>
-vol_regimes = detector.<span class="function">volatility_clustering_regimes</span>()
-
-<span class="comment"># Gaussian mixture model regimes</span>
-gmm_regimes = detector.<span class="function">gaussian_mixture_regimes</span>(n_regimes=3)
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Getting Started Section -->
-    <section class="getting-started" id="getting-started">
-        <div class="container">
-            <h2 class="section-title fade-in-up">Getting Started</h2>
-            <div class="steps-grid fade-in-up">
-                
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Clone Repository</h3>
-                    <p style="color: var(--text-secondary);">
-                        Clone the project and navigate to the directory
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; margin-top: 1rem;">
-                        git clone https://github.com/Sakeeb91/financial-asset-dynamics.git
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Install Dependencies</h3>
-                    <p style="color: var(--text-secondary);">
-                        Install all required Python packages
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; margin-top: 1rem;">
-                        cd sde_asset_modeling<br>
-                        pip install -r requirements.txt
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Run Demos</h3>
-                    <p style="color: var(--text-secondary);">
-                        Execute advanced analytics dashboards
-                    </p>
-                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 0.5rem; font-family: monospace; margin-top: 1rem;">
-                        python create_advanced_dashboard.py<br>
-                        python create_comprehensive_report.py
-                    </div>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <h3>Explore Results</h3>
-                    <p style="color: var(--text-secondary);">
-                        View interactive HTML reports and visualizations
-                    </p>
-                    <div style="margin-top: 1rem;">
-                        <a href="https://github.com/Sakeeb91/financial-asset-dynamics/blob/master/README.md" class="btn btn-primary" target="_blank">
-                            <i class="fas fa-book"></i> Documentation
-                        </a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -1126,154 +468,27 @@ gmm_regimes = detector.<span class="function">gaussian_mixture_regimes</span>(n_
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Project</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://github.com/Sakeeb91/financial-asset-dynamics" target="_blank">GitHub Repository</a></li>
-                        <li><a href="https://github.com/Sakeeb91/financial-asset-dynamics/blob/master/README.md" target="_blank">Documentation</a></li>
-                        <li><a href="https://github.com/Sakeeb91/financial-asset-dynamics/releases" target="_blank">Releases</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Features</h4>
-                    <ul class="footer-links">
-                        <li><a href="#features">Portfolio Optimization</a></li>
-                        <li><a href="#features">Risk Management</a></li>
-                        <li><a href="#features">Options Pricing</a></li>
-                        <li><a href="#features">Market Intelligence</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Developer</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://sakeeb91.github.io/" target="_blank">Portfolio</a></li>
-                        <li><a href="https://github.com/Sakeeb91" target="_blank">GitHub Profile</a></li>
-                        <li><a href="https://linkedin.com/in/shafkat-rahman/" target="_blank">LinkedIn</a></li>
-                        <li><a href="mailto:rahman.sakeeb@gmail.com">Contact</a></li>
-                    </ul>
-                </div>
+            <div class="footer-links">
+                <a href="https://github.com/Sakeeb91/financial-asset-dynamics" class="footer-link" target="_blank">GITHUB REPOSITORY</a>
+                <a href="https://github.com/Sakeeb91/financial-asset-dynamics/blob/main/README.md" class="footer-link" target="_blank">DOCUMENTATION</a>
+                <a href="sde_asset_modeling/" class="footer-link" target="_blank">SOURCE CODE</a>
+                <a href="heston_simulation/" class="footer-link" target="_blank">HESTON DEMO</a>
             </div>
-            <hr style="border: none; border-top: 1px solid #374151; margin: 2rem 0;">
-            <p>&copy; 2024 Shafkat Rahman. Financial Asset Dynamics - Advanced Quantitative Finance Library.</p>
+            <p>Institutional-grade quantitative finance library for advanced financial modeling and analysis.</p>
+            <p style="margin-top: 10px;">(c) 2024 FINANCIAL ASSET DYNAMICS PROJECT</p>
         </div>
     </footer>
 
-    <!-- JavaScript for interactive chart and animations -->
+    <!-- JavaScript for smooth scrolling -->
     <script>
-        // Create efficient frontier demo chart
-        function createEfficientFrontierChart() {
-            const returns = [0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22, 0.24];
-            const volatilities = [0.15, 0.16, 0.17, 0.19, 0.21, 0.24, 0.27, 0.31, 0.36];
-            
-            const trace1 = {
-                x: volatilities,
-                y: returns,
-                mode: 'lines+markers',
-                name: 'Efficient Frontier',
-                line: {
-                    color: '#1e40af',
-                    width: 3
-                },
-                marker: {
-                    size: 6,
-                    color: '#3b82f6'
-                }
-            };
-            
-            // Add optimal portfolios
-            const trace2 = {
-                x: [0.17, 0.15, 0.21],
-                y: [0.124, 0.085, 0.158],
-                mode: 'markers',
-                name: 'Optimal Portfolios',
-                marker: {
-                    size: 12,
-                    color: ['#ef4444', '#10b981', '#f59e0b'],
-                    symbol: ['circle', 'square', 'diamond']
-                },
-                text: ['Max Sharpe', 'Min Variance', 'Risk Parity'],
-                textposition: 'top center'
-            };
-            
-            const layout = {
-                title: {
-                    text: 'Portfolio Efficient Frontier',
-                    font: { size: 18, color: '#1f2937' }
-                },
-                xaxis: {
-                    title: 'Volatility (Risk)',
-                    gridcolor: '#e5e7eb'
-                },
-                yaxis: {
-                    title: 'Expected Return',
-                    gridcolor: '#e5e7eb'
-                },
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                margin: { t: 50, r: 30, b: 50, l: 60 }
-            };
-            
-            const config = {
-                responsive: true,
-                displayModeBar: false
-            };
-            
-            Plotly.newPlot('efficient-frontier-chart', [trace1, trace2], layout, config);
-        }
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = 'var(--shadow)';
-            } else {
-                nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s ease-out';
-            observer.observe(el);
-        });
-
-        // Initialize chart when page loads
-        window.addEventListener('load', () => {
-            setTimeout(createEfficientFrontierChart, 500);
         });
     </script>
 </body>
